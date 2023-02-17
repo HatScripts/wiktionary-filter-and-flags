@@ -35,7 +35,7 @@ This userscript filters languages and shows country flags on [Wiktionary](https:
 
 2. Then install this script from one of the following links:
    * [GitHub](https://github.com/HatScripts/wiktionary-filter-and-flags/raw/main/wiktionary-filter-and-flags.user.js) (Recommended)
-   * [Greasy Fork]()
+   * [Greasy Fork](https://greasyfork.org/en/scripts/460178-wiktionary-filter-flags)
 
 ## Acknowledgements
 

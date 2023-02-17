@@ -1,8 +1,9 @@
 // ==UserScript==
 // @name        Wiktionary: Filter & Flags
 // @namespace   https://github.com/HatScripts/monolingual-wiktionary
-// @version     1.0.0
-// @description Collapses word definitions on Wiktionary for languages other than those in the whitelist
+// @version     1.0.1
+// @license     MIT
+// @description Filters languages and shows country flags on Wiktionary
 // @author      HatScripts
 // @icon        https://en.wiktionary.org/static/favicon/wiktionary/en.ico
 // @match       https://en.wiktionary.org/wiki/*
