@@ -39,6 +39,18 @@ _See also: [Google Translate: Filter & Flags](https://github.com/HatScripts/goog
    * [GitHub](https://github.com/HatScripts/wiktionary-filter-and-flags/raw/main/wiktionary-filter-and-flags.user.js) (Recommended)
    * [Greasy Fork](https://greasyfork.org/en/scripts/460178-wiktionary-filter-flags)
 
+## Settings
+
+You can configure the settings by clicking the 'Settings' button under 'Google Translate: Filter & Flags' in your userscript manager.
+
+Setting          | Description                                      | Default
+---------------- | ------------------------------------------------ | -------
+Show flags       | Show country flags next to languages             | on
+Filter languages | Show only the specified languages                | on
+Filter ToC       | Filter languages in the page's table of contents | off
+Languages shown  | The languages to show, separated by commas       | `English,Translingual`
+
 ## Acknowledgements
 
 * The flags used are from [circle-flags](https://github.com/HatScripts/circle-flags)
+* The settings interface uses [GM_config](https://github.com/sizzlemctwizzle/GM_config) by sizzlemctwizzle

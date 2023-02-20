@@ -1,22 +1,60 @@
 // ==UserScript==
 // @name        Wiktionary: Filter & Flags
 // @namespace   https://github.com/HatScripts/monolingual-wiktionary
-// @version     1.0.1
+// @version     1.0.2
 // @license     MIT
 // @description Filters languages and shows country flags on Wiktionary
 // @author      HatScripts
 // @icon        https://en.wiktionary.org/static/favicon/wiktionary/en.ico
 // @match       https://en.wiktionary.org/wiki/*
 // @match       https://en.wiktionary.org/w/index.php?title=*
+// @require     https://openuserjs.org/src/libs/sizzle/GM_config.js
 // @grant       GM_addStyle
+// @grant       GM_getValue
+// @grant       GM_setValue
+// @grant       GM_registerMenuCommand
 // @run-at      document-start
 // ==/UserScript==
 
 ;(() => {
   'use strict'
 
-  const SHOW_ALL_LANGS_IN_TOC = true
-  const LANG_WHITELIST = new Set(['English', 'Translingual'])
+  GM_config.init({
+    id: 'wff_config',
+    title: GM_info.script.name + ' Settings',
+    fields: {
+      SHOW_FLAGS: {
+        label: 'Show flags',
+        type: 'checkbox',
+        default: true,
+        title: 'Show country flags next to languages'
+      },
+      FILTER_LANGUAGES: {
+        label: 'Filter languages',
+        type: 'checkbox',
+        default: true,
+        title: 'Show only the specified languages'
+      },
+      FILTER_TOC: {
+        label: 'Filter languages in the table of contents',
+        type: 'checkbox',
+        default: false,
+        title: 'In the page\'s table of contents, show only the specified languages'
+      },
+      LANGUAGES_SHOWN: {
+        label: 'Languages shown',
+        type: 'textarea',
+        default: 'English,Translingual',
+        title: 'The languages to show, separated by commas'
+      }
+    }
+  })
+
+  GM_registerMenuCommand('Settings', () => {
+    GM_config.open()
+  })
+
+  const LANG_WHITELIST = new Set(GM_config.get('LANGUAGES_SHOWN').split(','))
   const LANGS_ON_PAGE = new Set(Array.from(document.querySelectorAll('h2 > .mw-headline'))
                                 .map(el => el.textContent.replaceAll(' ', '_')))
 
@@ -26,7 +64,7 @@
   console.log('monowikt: LANG_WHITELIST:', LANG_WHITELIST)
   console.log('monowikt: intersect:     ', intersect)
 
-  if (intersect.size === 0) {
+  if (intersect.size === 0 || !GM_config.get('FILTER_LANGUAGES')) {
     LANGS_ON_PAGE.forEach(lang => LANG_WHITELIST.add(lang))
   }
 
@@ -126,14 +164,14 @@
     const span = li.querySelector('a > span.toctext')
     const lang = span.textContent.replaceAll(' ', '_')
     const langCode = LANG_MAP[lang]
-    if (langCode) {
+    if (langCode && GM_config.get('SHOW_FLAGS')) {
       span.textContent = ' ' + span.textContent
       const flagImg = createFlagImg(langCode, 16)
       span.insertBefore(flagImg, span.firstChild)
     }
 
     if (!LANG_WHITELIST.has(lang)) {
-      hide(SHOW_ALL_LANGS_IN_TOC ? li.querySelector('ul') : li, lang)
+      hide(GM_config.get('FILTER_TOC') ? li : li.querySelector('ul'), lang)
     }
   })
   console.timeEnd('monowikt: hide table of contents text')
@@ -148,7 +186,7 @@
       lang = headline.textContent.replaceAll(' ', '_')
       console.log('lang:', lang)
       const langCode = LANG_MAP[lang]
-      if (langCode) {
+      if (langCode && GM_config.get('SHOW_FLAGS')) {
         headline.textContent = ' ' + headline.textContent
         const flagImg = createFlagImg(langCode, 32)
         headline.insertBefore(flagImg, headline.firstChild)
