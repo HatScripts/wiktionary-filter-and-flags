@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        Wiktionary: Filter & Flags
 // @namespace   https://github.com/HatScripts/monolingual-wiktionary
-// @version     1.0.2
+// @version     1.0.3
 // @license     MIT
 // @description Filters languages and shows country flags on Wiktionary
 // @author      HatScripts
@@ -13,8 +13,10 @@
 // @grant       GM_getValue
 // @grant       GM_setValue
 // @grant       GM_registerMenuCommand
-// @run-at      document-start
+// @run-at      document-idle
 // ==/UserScript==
+
+// TODO: Fix multi-word languagees
 
 ;(() => {
   'use strict'
@@ -115,6 +117,7 @@
       'Old Norse': 'non',
       'Otomi': 'oto',
       'Papiamentu': 'pap',
+      'Piedmontese': 'pms',
       'Udmurt': 'udm',
       'Western Mari': 'mrj',
       'White Hmong': 'hmn',
