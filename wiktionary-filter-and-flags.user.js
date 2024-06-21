@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        Wiktionary: Filter & Flags
 // @namespace   https://github.com/HatScripts/monolingual-wiktionary
-// @version     1.0.3
+// @version     1.0.4
 // @license     MIT
 // @description Filters languages and shows country flags on Wiktionary
 // @author      HatScripts
@@ -106,6 +106,7 @@
       'Yiddish': 'yi',
       // ---
       'Tagalog': 'tl',
+      'Mandarin': 'zh',
       // ---
       'Central Kurdish': 'ckb',
       'Eastern Mari': 'chm',
@@ -118,6 +119,7 @@
       'Otomi': 'oto',
       'Papiamentu': 'pap',
       'Piedmontese': 'pms',
+      'Scots': 'sco',
       'Udmurt': 'udm',
       'Western Mari': 'mrj',
       'White Hmong': 'hmn',
