@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        Wiktionary: Filter & Flags
 // @namespace   https://github.com/HatScripts/monolingual-wiktionary
-// @version     1.0.4
+// @version     1.0.5
 // @license     MIT
 // @description Filters languages and shows country flags on Wiktionary
 // @author      HatScripts
@@ -124,6 +124,8 @@
       'Western Mari': 'mrj',
       'White Hmong': 'hmn',
       'Yucatec Maya': 'yua',
+      // ---
+      'Translingual': 'translingual',
     }
     return { ...langMap, ...langMap2 }
   }
