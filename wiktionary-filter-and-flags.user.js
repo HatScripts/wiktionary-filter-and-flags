@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        Wiktionary: Filter & Flags
 // @namespace   https://github.com/HatScripts/monolingual-wiktionary
-// @version     1.0.5
+// @version     1.0.6
 // @license     MIT
 // @description Filters languages and shows country flags on Wiktionary
 // @author      HatScripts
@@ -57,7 +57,7 @@
   })
 
   const LANG_WHITELIST = new Set(GM_config.get('LANGUAGES_SHOWN').split(','))
-  const LANGS_ON_PAGE = new Set(Array.from(document.querySelectorAll('h2 > .mw-headline'))
+  const LANGS_ON_PAGE = new Set(Array.from(document.querySelectorAll('.mw-heading.mw-heading2 > h2'))
                                 .map(el => el.textContent.replaceAll(' ', '_')))
 
   let intersect = new Set([...LANG_WHITELIST].filter(l => LANGS_ON_PAGE.has(l)))
@@ -186,10 +186,9 @@
   console.time('monowikt: hide sections')
   let hideNext = false
   let lang
-  let hr
   Array.from(document.querySelector('#mw-content-text > div').children).forEach(el => {
-    if (el.nodeName === 'H2') {
-      const headline = el.querySelector('.mw-headline')
+    if (el.classList.contains('mw-heading2')) {
+      const headline = el.querySelector('h2')
       lang = headline.textContent.replaceAll(' ', '_')
       console.log('lang:', lang)
       const langCode = LANG_MAP[lang]
@@ -199,14 +198,8 @@
         headline.insertBefore(flagImg, headline.firstChild)
       }
       hideNext = !LANG_WHITELIST.has(lang)
-      if (hr) {
-        hide(hr, lang)
-        hr = undefined
-      }
-    } else if (el.nodeName === 'HR') {
-      hr = el
     }
-    if (hideNext && !hr) {
+    if (hideNext) {
       hide(el, lang)
     }
   })
