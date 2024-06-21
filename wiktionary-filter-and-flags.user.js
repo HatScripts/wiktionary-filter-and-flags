@@ -1,14 +1,14 @@
 // ==UserScript==
 // @name        Wiktionary: Filter & Flags
 // @namespace   https://github.com/HatScripts/monolingual-wiktionary
-// @version     1.0.6
+// @version     1.0.7
 // @license     MIT
 // @description Filters languages and shows country flags on Wiktionary
 // @author      HatScripts
 // @icon        https://en.wiktionary.org/static/favicon/wiktionary/en.ico
 // @match       https://en.wiktionary.org/wiki/*
 // @match       https://en.wiktionary.org/w/index.php?title=*
-// @require     https://openuserjs.org/src/libs/sizzle/GM_config.js
+// @require     https://cdn.jsdelivr.net/gh/sizzlemctwizzle/GM_config@43fd0fe4de1166f343883511e53546e87840aeaf/gm_config.js
 // @grant       GM_addStyle
 // @grant       GM_getValue
 // @grant       GM_setValue
